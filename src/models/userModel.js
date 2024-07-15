@@ -31,7 +31,7 @@ class UserModel {
     async createUser(userData) {
         const connection = await createConnection();
         try {
-            // Example: Inserting a new user
+
             const [result] = await connection.query('INSERT INTO users SET ?', userData);
             return { id: result.insertId };
         } catch (error) {
