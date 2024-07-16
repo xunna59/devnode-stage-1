@@ -14,10 +14,28 @@ router.get('/:id',
 
 // POST /users - Create a new user
 router.post('/',
-    body('first_name').notEmpty().withMessage('First Name is required'),
-    body('last_name').notEmpty().withMessage('Last Name is required'),
-    body('email').isEmail().withMessage('Email is required'),
+    body('first_name').notEmpty().withMessage('First Name is required.'),
+    body('last_name').notEmpty().withMessage('Last Name is required.'),
+    body('email').isEmail().withMessage('Email is required.'),
     userController.createUser
 );
+
+// PUT /users - Update User Information
+router.put('/:id',
+    param('id').isInt().withMessage('ID must be an integer'),
+    body('email').isEmail().withMessage('Email is required.'),
+
+    userController.updateUser
+
+);
+
+// DELETE /users - Delete User by ID
+
+router.delete('/:id',
+    param('id').isInt().withMessage('ID must be an integer'),
+    userController.deleteUser
+);
+
+
 
 module.exports = router;

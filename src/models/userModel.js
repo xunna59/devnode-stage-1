@@ -40,6 +40,37 @@ class UserModel {
             await connection.end();
         }
     }
+
+    async updateUser(userData, id) {
+        const connection = await createConnection();
+        try {
+
+            const [result] = await connection.query('UPDATE users SET ? WHERE id = ?', [userData, id]);
+            return result;
+        } catch (error) {
+            throw new Error(`${error.message}`);
+        } finally {
+            await connection.end();
+        }
+    }
+
+
+    async deleteUser(id) {
+        const connection = await createConnection();
+
+        try {
+
+            const [result] = await connection.query('DELETE FROM users WHERE id = ?', [id]);
+            return result;
+
+
+        } catch (error) {
+            throw new Error(`${error.message}`);
+        } finally {
+            await connection.end();
+        }
+
+    }
 }
 
 module.exports = UserModel;
