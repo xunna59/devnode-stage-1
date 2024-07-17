@@ -11,7 +11,8 @@ async function createConnection() {
         console.log('Database connected successfully');
         return connection;
     } catch (error) {
-        console.error('Error connecting to the database:', error.message);
+              console.error(`Error connecting to the database:${process.env.DB_NAME}`, error.message);
+
         throw error;
     }
 }
